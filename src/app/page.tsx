@@ -126,93 +126,152 @@ export default function HomePage() {
       {/* ─────────── HERO ─────────── */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center px-6 pt-20"
+        className="relative min-h-screen flex items-center px-6 pt-28 pb-20 lg:pt-24"
       >
-        {/* Soft ambient blooms */}
-        <div className="pointer-events-none absolute top-1/4 left-1/4 w-[28rem] h-[28rem] bg-blue-500/10 blur-[140px] rounded-full" />
-        <div className="pointer-events-none absolute bottom-1/4 right-1/4 w-[28rem] h-[28rem] bg-gold/10 blur-[140px] rounded-full" />
+        {/* Ambient blooms */}
+        <div className="pointer-events-none absolute -top-20 -left-20 w-[32rem] h-[32rem] bg-blue-500/10 blur-[160px] rounded-full" />
+        <div className="pointer-events-none absolute -bottom-20 -right-20 w-[36rem] h-[36rem] bg-gold/15 blur-[160px] rounded-full" />
 
-        {/* 3D scene */}
-        <motion.div
-          style={{ y: heroSceneY, opacity: heroOpacity }}
-          className="absolute inset-0 z-0"
-        >
-          <HeroScene className="absolute inset-0 h-full w-full" />
-        </motion.div>
-
-        {/* Hero copy */}
-        <motion.div
-          style={{ y: heroTextY }}
-          className="relative z-10 max-w-5xl mx-auto text-center"
-        >
+        <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          {/* Hero copy — left column */}
           <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-            className="flex flex-col items-center"
+            style={{ y: heroTextY, opacity: heroOpacity }}
+            className="lg:col-span-7"
           >
-            <motion.span variants={fadeUp} className="subtitle-caps">
-              Professional Video Editor · Est. 2020
-            </motion.span>
-
-            <motion.h1
-              variants={fadeUp}
-              className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.05] text-balance mb-6"
-            >
-              Elevating Your Vision Into
-              <br />
-              <span className="text-gold italic">Cinematic Reality</span>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light text-pretty"
-            >
-              High-end post-production for creators, brands, and filmmakers.
-              Specializing in storytelling that captivates and converts.
-            </motion.p>
-
             <motion.div
-              variants={fadeUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              variants={stagger}
+              initial="hidden"
+              animate="show"
+              className="flex flex-col items-start"
             >
-              <Link to="/services" className="btn-primary w-full sm:w-auto">
-                Hire Me Now
-              </Link>
-              <Link to="/portfolio" className="btn-outline w-full sm:w-auto">
-                View Portfolio
-              </Link>
-            </motion.div>
-
-            {/* Trust row */}
-            <motion.div
-              variants={fadeUp}
-              className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-white/40"
-            >
-              <div className="flex items-center gap-2">
-                <Star size={14} className="fill-gold text-gold" />
-                <Star size={14} className="fill-gold text-gold" />
-                <Star size={14} className="fill-gold text-gold" />
-                <Star size={14} className="fill-gold text-gold" />
-                <Star size={14} className="fill-gold text-gold" />
-                <span className="ml-2 text-xs uppercase tracking-widest">
-                  5.0 · 200+ Reviews
+              <motion.span
+                variants={fadeUp}
+                className="subtitle-caps inline-flex items-center gap-3"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
                 </span>
-              </div>
-              <div className="hidden md:block h-4 w-px bg-white/10" />
-              <div className="text-xs uppercase tracking-widest">
-                Trusted by 80+ creators worldwide
-              </div>
+                Available for new projects · Est. 2020
+              </motion.span>
+
+              <motion.h1
+                variants={fadeUp}
+                className="font-serif text-[clamp(2.75rem,7vw,5.5rem)] leading-[1.02] tracking-tight text-balance mb-6"
+              >
+                Elevating Your Vision Into{' '}
+                <span className="text-gold italic">Cinematic</span>{' '}
+                <span className="relative inline-block">
+                  <span className="text-gold italic">Reality</span>
+                  <svg
+                    className="absolute -bottom-3 left-0 w-full"
+                    viewBox="0 0 200 8"
+                    preserveAspectRatio="none"
+                    aria-hidden
+                  >
+                    <motion.path
+                      d="M2 6 Q 100 0 198 5"
+                      stroke="#D4AF63"
+                      strokeWidth="1.5"
+                      fill="none"
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ delay: 1.2, duration: 1.4, ease: 'easeInOut' }}
+                    />
+                  </svg>
+                </span>
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className="text-white/60 text-lg md:text-xl max-w-xl mb-10 leading-relaxed font-light text-pretty"
+              >
+                High-end post-production for creators, brands, and filmmakers.
+                Storytelling that captivates and converts.
+              </motion.p>
+
+              <motion.div
+                variants={fadeUp}
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
+              >
+                <Link to="/services" className="btn-primary w-full sm:w-auto">
+                  Hire Me Now
+                </Link>
+                <Link to="/portfolio" className="btn-outline w-full sm:w-auto">
+                  View Portfolio
+                </Link>
+              </motion.div>
+
+              {/* Trust row */}
+              <motion.div
+                variants={fadeUp}
+                className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 text-white/40"
+              >
+                <div className="flex items-center gap-2">
+                  <Star size={14} className="fill-gold text-gold" />
+                  <Star size={14} className="fill-gold text-gold" />
+                  <Star size={14} className="fill-gold text-gold" />
+                  <Star size={14} className="fill-gold text-gold" />
+                  <Star size={14} className="fill-gold text-gold" />
+                  <span className="ml-2 text-[10px] uppercase tracking-[0.25em]">
+                    5.0 · 200+ Reviews
+                  </span>
+                </div>
+                <div className="hidden md:block h-4 w-px bg-white/10" />
+                <div className="text-[10px] uppercase tracking-[0.25em]">
+                  Trusted by 80+ creators worldwide
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* 3D scene — right column */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}
+            style={{ y: heroSceneY }}
+            className="relative lg:col-span-5 aspect-square w-full max-w-[560px] mx-auto"
+          >
+            {/* Glow halo */}
+            <div className="absolute inset-6 bg-gold/20 blur-[100px] rounded-full" />
+
+            {/* Glassy frame */}
+            <div className="relative h-full w-full rounded-[2rem] overflow-hidden border border-white/10 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent backdrop-blur-sm">
+              <HeroScene className="absolute inset-0 h-full w-full" />
+
+              {/* Frame highlights */}
+              <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2rem]" />
+              <div className="pointer-events-none absolute -top-px left-10 right-10 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+
+              {/* Floating meta chips */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1, duration: 0.8, ease: EASE }}
+                className="absolute top-6 left-6 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur border border-white/10 text-[10px] uppercase tracking-[0.25em] text-white/70"
+              >
+                <span className="text-gold">●</span> 4K · 60FPS
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.2, duration: 0.8, ease: EASE }}
+                className="absolute bottom-6 right-6 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur border border-white/10 text-[10px] uppercase tracking-[0.25em] text-white/70"
+              >
+                Cinematic Grade
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
 
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
+          transition={{ delay: 1.4, duration: 1.2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
         >
           <span className="text-[10px] uppercase tracking-[0.5em] text-white/30">
             Scroll
