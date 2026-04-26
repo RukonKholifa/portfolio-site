@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { AppLogo } from './ui/AppLogo';
 import { Menu, X } from 'lucide-react';
@@ -22,10 +23,13 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header 
+    <motion.header
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4 px-6 md:px-12",
-        isScrolled ? "bg-deep-bg/80 backdrop-blur-lg border-bottom border-white/5 py-3" : "bg-transparent"
+        isScrolled ? "bg-deep-bg/70 backdrop-blur-xl border-b border-white/5 py-3" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -40,7 +44,7 @@ export const Header: React.FC = () => {
               key={link.path} 
               to={link.path}
               className={cn(
-                "text-sm font-medium tracking-widest uppercase transition-colors hover:text-gold",
+                "link-underline text-xs font-medium tracking-[0.25em] uppercase transition-colors hover:text-gold",
                 location.pathname === link.path ? "text-gold" : "text-white/70"
               )}
             >
@@ -87,6 +91,6 @@ export const Header: React.FC = () => {
           Hire Me
         </Link>
       </div>
-    </header>
+    </motion.header>
   );
 };
